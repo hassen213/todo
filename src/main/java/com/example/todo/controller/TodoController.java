@@ -11,21 +11,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
+@CrossOrigin("*")
 public class TodoController {
     @Autowired
     TodoRepository todoRepository;
 
+    @CrossOrigin("*")
     @GetMapping("/findall")
     public List<Todo> findall(){
         return this.todoRepository.findAll();
     }
 
+    @CrossOrigin("*")
     @PostMapping("/add")
     public Todo addTodo(@RequestBody Todo todo){
         return todoRepository.save(todo);
 
     }
 
+    @CrossOrigin("*")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTodo(@PathVariable Integer id){
 
@@ -37,6 +41,7 @@ public class TodoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @CrossOrigin("*")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateTodo(@PathVariable Integer id,@RequestBody Todo todo){
         if(this.todoRepository.findById(id).isPresent()){
